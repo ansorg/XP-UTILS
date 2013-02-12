@@ -24,4 +24,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>DataRefs.txt</name>
+			<type>1</type>
+			<location>E:/X-Plane 10 Demo/Resources/plugins/DataRefs.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>

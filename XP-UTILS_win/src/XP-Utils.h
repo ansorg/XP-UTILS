@@ -30,7 +30,7 @@ namespace XPUtilsPlugin {
 
 			static const float BARO_29_92 = 29.92;
 
-			void handleSetBarometer();
+			void handleSetBarometer(int);
 
 
 		public:
@@ -48,10 +48,10 @@ namespace XPUtilsPlugin {
 			float flightLoopCallback(float inElapsedSinceLastCall, float inElapsedTimeSinceLastFlightLoop, int inCounter, void * inRefcon);
 
 			enum commandIdRefs {
-				COMMAND_SHOW_FMSWINDOW, COMMAND_SET_BAROMETER
+				COMMAND_SHOW_FMSWINDOW, COMMAND_SET_BAROMETER, COMMAND_SET_BARO_STD
 			};
 
-			XPLMHotKeyID showFmsWindow, setBarometer;
+			XPLMHotKeyID showFmsWindow, setBarometer, setBaroStd;
 	};
 
 	extern XPUtils xpUtils;

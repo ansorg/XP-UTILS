@@ -34,22 +34,21 @@ namespace XPUtilsPlugin {
 			planePosition.lon = XPLMGetDataf(dRefPlaneLon);
 			getFmsWindow().show(planePosition);
 			break;
+		case COMMAND_SET_BARO_STD:
 		case COMMAND_SET_BAROMETER:
-			handleSetBarometer();
+			handleSetBarometer(keyId);
 			break;
 		default:
 			break;
 		}
 	}
 
-	void XPUtils::handleSetBarometer() {
+	void XPUtils::handleSetBarometer(int cmdId) {
 
 		float baroCurrentInhg = XPLMGetDataf(dRefBaroSealevelInhg);
 		float gaugeBaroInhg = XPLMGetDataf(dRefGaugeBaroPilot);
 
-		std::cout << "actual: " << baroCurrentInhg << " gauge: " << gaugeBaroInhg << std::endl;
-
-		if (gaugeBaroInhg == BARO_29_92) {
+		if (cmdId == COMMAND_SET_BAROMETER) {
 			std::cout << "setting to actual pressure" << std::endl;
 			XPLMSetDataf(dRefGaugeBaroPilot, baroCurrentInhg);
 		} else {

@@ -44,7 +44,8 @@ PLUGIN_API __attribute__((visibility("default"))) int XPluginStart(char * outNam
 
 	int keyFlag = xplm_DownFlag + xplm_ShiftFlag + xplm_ControlFlag;
 	xpUtils.showFmsWindow = XPLMRegisterHotKey(XPLM_VK_F, keyFlag, "show FMS window", FMSHotKeyCallback, (void*) xpUtils.COMMAND_SHOW_FMSWINDOW);
-	xpUtils.setBarometer = XPLMRegisterHotKey(XPLM_VK_B, keyFlag, "set Barometer", FMSHotKeyCallback, (void*) xpUtils.COMMAND_SET_BAROMETER);
+	xpUtils.setBaroStd = XPLMRegisterHotKey(XPLM_VK_B, keyFlag, "set actual Baro", FMSHotKeyCallback, (void*) xpUtils.COMMAND_SET_BARO_STD);
+	xpUtils.setBarometer = XPLMRegisterHotKey(XPLM_VK_B, xplm_DownFlag + xplm_ControlFlag, "set standard Baro", FMSHotKeyCallback, (void*) xpUtils.COMMAND_SET_BAROMETER);
 
 	xpUtils.pluginStart();
 
