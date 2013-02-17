@@ -1,5 +1,5 @@
 /*
- * FMS.cpp
+ * XP-Utils.cpp
  *
  *  Created on: 20.01.2013
  *      Author: Jens
@@ -65,6 +65,7 @@ namespace XPUtilsPlugin {
 	}
 
 	void XPUtils::pluginStart() {
+		Utils::log("XPUtils::pluginStart", LOG_INFO);
 		dRefPlaneLat = XPLMFindDataRef("sim/flightmodel/position/latitude");
 		dRefPlaneLon = XPLMFindDataRef("sim/flightmodel/position/longitude");
 		dRefBaroSealevelInhg = XPLMFindDataRef("sim/weather/barometer_sealevel_inhg");
@@ -76,10 +77,6 @@ namespace XPUtilsPlugin {
 		XPLMUnregisterDataAccessor(dRefGaugeBaroPilot);
 		XPLMUnregisterDataAccessor(dRefPlaneLat);
 		XPLMUnregisterDataAccessor(dRefPlaneLon);
-		//XPLMUnregisterDataAccessor(dRefPlaneAgl);
-		//XPLMUnregisterDataAccessor(dRefPlaneMagPsi);
-		//XPLMUnregisterDataAccessor(dRefPlanePsi);
-
 	}
 
 	FMSWindow& XPUtils::getFmsWindow() {

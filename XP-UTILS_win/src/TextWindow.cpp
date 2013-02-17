@@ -51,7 +51,9 @@ namespace XPUtilsPlugin {
 		}
 		show();
 		if (duration > 0) {
+#ifdef DEBUG
 			XPLMDebugString("start timer to hide textmessage");
+#endif
 			hideIsPending = TRUE;
 		}
 	}

@@ -157,7 +157,7 @@ namespace XPUtilsPlugin {
 			}
 				break;
 			case LOG_DEBUG: {
-#if DEBUG
+#ifdef DEBUG
 				std::string out = Utils::getFullPluginName() + " [DEBUG]: " + msg + "\n";
 				XPLMDebugString(const_cast<char *>(out.c_str()));
 #endif
@@ -177,23 +177,17 @@ namespace XPUtilsPlugin {
 		static std::string getFullPluginName() {
 #ifdef PLUGINNAME
 #ifdef PLUGINVERSION
-			std::string strDate = currentDateTime();
 #ifdef DEBUG
-			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 2 + 8 + strlen(strDate) + 3];
+			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 2 + 8];
 			strcpy(cBuff, PLUGINNAME);
 			strcat(cBuff, " v");
 			strcat(cBuff, PLUGINVERSION);
-			strcat(cBuff, " (DEBUG, ");
-			strcat(cBuff, strDate.c_str());
-			strcat(cBuff, ")");
+			strcat(cBuff, " (DEBUG)");
 #else
-			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 2 + strlen(strDate.c_str()) + 3];
+			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 2];
 			strcpy(cBuff, PLUGINNAME);
 			strcat(cBuff, " v");
 			strcat(cBuff, PLUGINVERSION);
-			strcat(cBuff, " (");
-			strcat(cBuff, strDate.c_str());
-			strcat(cBuff, ")");
 #endif
 			return cBuff;
 #else
@@ -212,25 +206,13 @@ namespace XPUtilsPlugin {
 #include <Carbon/Carbon.h>
 		static int ConvertPath(const char * inPath, char * outPath, int outPathMaxLen)
 		{
-#if DEBUG
-			std::cout << "parameters: " << inPath << " " << outPath << " " << outPathMaxLen << std::endl;
-#endif
 			CFStringRef inStr = CFStringCreateWithCString(kCFAllocatorDefault, inPath ,kCFStringEncodingMacRoman);
-#if DEBUG
-			std::cout << "inStr: " << inStr << std::endl;
-#endif
 			if (inStr == NULL)
-			return -1;
+				return -1;
 			CFURLRef url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, inStr, kCFURLHFSPathStyle,0);
-#if DEBUG
-			std::cout << "url: " << url << std::endl;
-#endif
 			CFStringRef outStr = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-#if DEBUG
-			std::cout << "outStr: " << outStr << std::endl;
-#endif
 			if (!CFStringGetCString(outStr, outPath, outPathMaxLen, kCFURLPOSIXPathStyle))
-			return -1;
+				return -1;
 			CFRelease(outStr);
 			CFRelease(url);
 			CFRelease(inStr);
