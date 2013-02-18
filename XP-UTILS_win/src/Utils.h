@@ -175,26 +175,22 @@ namespace XPUtilsPlugin {
 		}
 
 		static std::string getFullPluginName() {
-#ifdef PLUGINNAME
-#ifdef PLUGINVERSION
-#ifdef DEBUG
-			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 2 + 8];
+#if defined(PLUGINNAME) && defined(PLUGINVERSION)
+#  ifdef DEBUG
+			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 3 + 8];
 			strcpy(cBuff, PLUGINNAME);
 			strcat(cBuff, " v");
 			strcat(cBuff, PLUGINVERSION);
 			strcat(cBuff, " (DEBUG)");
-#else
-			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 2];
+#  else
+			char cBuff[strlen(PLUGINNAME) + strlen(PLUGINVERSION) + 3];
 			strcpy(cBuff, PLUGINNAME);
 			strcat(cBuff, " v");
 			strcat(cBuff, PLUGINVERSION);
-#endif
+#  endif
 			return cBuff;
 #else
-			return "undefined";
-#endif
-#else
-			return "undefined";
+#  error "PLUGINNAME and/or PLUGINVERSION not defined"
 #endif
 		}
 

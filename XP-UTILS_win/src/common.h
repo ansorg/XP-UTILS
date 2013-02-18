@@ -41,6 +41,7 @@
 /// Sandy Barbour
 /// Handles all platform OpenGL headers.
 #if IBM
+#include <windows.h>
 #include <gl\gl.h>
 #include <gl\glu.h>
 #elif LIN
@@ -51,12 +52,12 @@
 #else
 #define TRUE 1
 #define FALSE 0
-#if __GNUC__
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
+#if APL
+#  include <OpenGL/gl.h>
+#  include <OpenGL/glu.h>
 #else
-#include <gl.h>
-#include <glu.h>
+#  include <gl.h>
+#  include <glu.h>
 #endif
 #endif
 /// Sandy Barbour
@@ -78,16 +79,18 @@
 #include "XPWidgets.h"
 #include "XPStandardWidgets.h"
 
-#define WIDGET_BORDER_WIDTH 15
-#define WIDGET_TITLE_HEIGHT 25
+namespace XPUtilsPlugin {
+	#define WIDGET_BORDER_WIDTH 15
+	#define WIDGET_TITLE_HEIGHT 25
 
-#define WIDGET_LEFT_POS 25
-#define WIDGET_LBL_HEIGHT 20
+	#define WIDGET_LEFT_POS 25
+	#define WIDGET_LBL_HEIGHT 20
 
-#define PLUGINNAME "XP-Utils"
-#define PLUGINVERSION "1.0.1 "
-#define PLUGINSIG "ansorg.xplane.xputils"
-#define PLUGINDESC "Various Helpers: FMS waypoint entry, Baro-Setting, ..."
-#define PLUGINPREFSEXT ".ini"
+	#define PLUGINNAME "XP-Utils"
+	#define PLUGINVERSION "1.0.1 "
+	#define PLUGINSIG "ansorg.xplane.xputils"
+	#define PLUGINDESC "Various Helpers: FMS waypoint entry, Baro-Setting, ..."
+	#define PLUGINPREFSEXT ".ini"
+}  // namespace XPUtilsPlugin
 
 #endif /*COMMON_H_*/
